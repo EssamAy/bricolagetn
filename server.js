@@ -14,8 +14,25 @@ const cors = require('cors');
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
 
- app.get('*',(req,res,next)=>{
-   res.sendFile(__dirname+'/server.js');
+ app.get('/connect',(req,res,next)=>{
+   res.send('You are connected ! ');
+})
+
+var userController = require("./server/controllers/user-controller");
+
+
+
+app.get('/connect/:id',(req,res,next)=>{
+
+
+   res.send( userController(req.params.id));
+
+});
+
+
+
+app.get('*',(req,res,next)=>{
+  res.send('What are you doing here  ');
 })
 
 app.listen(3000,(err)=> {
