@@ -1,21 +1,24 @@
-var user = require("../models/user-model");
+var userModel = require("../models/user-model");
+
+const userController = {
+    addUser : function (firstName,lastName) {
+        var userInstance =  userModel.build({
+            firstName: 'First user from Api   ',
+            lastName: 'One'
+          });
+
+          userInstance.save();
+          console.log("New user Added");
+          return {"message" : "user added"}
+    },
+    getAllUsers : function (){
+        userModel.findAll().then(users => {
+            console.log(users);
+            return users ;
+        })
+    }
+}
 
 
-  // Table created
-  var userInstance =  user.build({
-    firstName: 'First user in da controller  ',
-    lastName: 'One'
-  })
 
-  userInstance.save()
-
-user.findAll().then(users => {
-    console.log(users)
-  })
-
-
-
-
-
-
-module.exports = user ;
+module.exports = userController ;

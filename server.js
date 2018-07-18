@@ -24,8 +24,7 @@ var userController = require("./server/controllers/user-controller");
 
 app.get('/connect/:id',(req,res,next)=>{
 
-
-   res.send( userController(req.params.id));
+  res.send( userController(req.params.id));
 
 });
 
