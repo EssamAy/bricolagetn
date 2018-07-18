@@ -1,8 +1,21 @@
 var user = require("../models/user-model");
 
 
-function getUserById(id) {
-    return  user[id] ;
-}
+  // Table created
+  var userInstance =  user.build({
+    firstName: 'First user in da controller  ',
+    lastName: 'One'
+  })
 
-module.exports = getUserById ;
+  userInstance.save()
+
+user.findAll().then(users => {
+    console.log(users)
+  })
+
+
+
+
+
+
+module.exports = user ;
