@@ -1,24 +1,43 @@
 var userModel = require("../models/user-model");
 
-const userController = {
-    addUser : function (firstName,lastName) {
-        var userInstance =  userModel.build({
+exports.getUsers = function (req, res) {
+  userModel.findAll().then(function (collection) {
+    res.status(200);
+    res.send({listUsers: collection});
+  });
+};
+
+exports.createUser = function (req, res, next) {
+  //var userData = req.body;
+  var userData = {
             firstName: 'First user from Api   ',
             lastName: 'One'
-          });
-
-          userInstance.save();
-          console.log("New user Added");
-          return {"message" : "user added"}
-    },
-    getAllUsers : function (){
-        userModel.findAll().then(users => {
-            console.log(users);
-            return users ;
-        })
-    }
+          }
+  userModel.build(userData).save()
+    .then(function (user) {
+       res.status(200);
+       return res.send({newUser: userData});
+    }).catch(function () {
+       res.status(400);
+       return res.send({reason: "Error"});
+    });
 }
 
+exports.getUserById = function (req, res) {
+  userModel.find({where: {id: req.params.id}}).then(function (user) {
+    res.status(200);
+    res.send({"user": user});
+  });
+};
 
-
-module.exports = userController ;
+exports.deleteUser = function (req, res) {
+  userModel.destroy({where: {id: req.params.id}})
+    .then(function () {
+      res.status(200);
+      res.send({});
+    })
+    .catch(function () {
+      res.status(400);
+      res.send({reason: "Error"});
+    });
+};
