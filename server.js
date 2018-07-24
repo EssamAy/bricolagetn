@@ -1,12 +1,11 @@
 const express = require('express');
 const app = express();
 
-const api = require ('./server/api/user-api');
+const userApi = require('./server/api/user-api');
+
 
 const bodyparser = require('body-parser');
 const cors = require('cors');
-var userController = require("./server/controllers/user-controller");
-
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,11 +15,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/api', api);
-
-
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
+
+app.use('/userapi',userApi);
 
 app.get('/connect',(req,res,next)=>{
   res.send('You are connected ! ');

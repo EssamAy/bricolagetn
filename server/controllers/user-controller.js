@@ -1,10 +1,15 @@
 var userModel = require("../models/user-model");
 
 exports.getUsers = function (req, res) {
+/*
   userModel.findAll().then(function (collection) {
-    res.status(200);
-    res.send({listUsers: collection});
+  //  res.status(200);
+    res.send(collection[0].id);
   });
+*/
+  return userModel.findAll({ raw: true });
+
+/**/
 };
 
 exports.createUser = function (req, res, next) {
@@ -21,7 +26,7 @@ exports.createUser = function (req, res, next) {
        res.status(400);
        return res.send({reason: "Error"});
     });
-}
+};
 
 exports.getUserById = function (req, res) {
   userModel.find({where: {id: req.params.id}}).then(function (user) {
