@@ -1,13 +1,17 @@
 var userModel = require("../models/user-model");
 
 exports.getUsers = function (req, res) {
-/*
-  userModel.findAll().then(function (collection) {
-  //  res.status(200);
-    res.send(collection[0].id);
-  });
-*/
-  return userModel.findAll({ raw: true });
+
+  // userModel.findAll().then(function (collection) {
+  // //  res.status(200);
+  //   res.send({listUsers: collection});
+  // });
+
+  userModel.findAll().then(users => {
+    console.log(users)
+  }).catch(err =>{
+    throw err;
+  })
 
 /**/
 };
