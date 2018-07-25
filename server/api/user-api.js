@@ -17,6 +17,13 @@ users => {
   */
 });
 
+router.get('/new',(req,res,next)=>{
+
+    var msg = userController.getUsers() ;
+
+    console.log(msg + "  new user added");
+});
+
 
 // app.get('/users', userController.getUsers);
 /*app.get('/api/users/:id', userController.getUserById);
