@@ -3,16 +3,18 @@ var userController = require("../controllers/user-controller");
 
 router.get('/users',(req,res,next)=>{
 
-    userController.getUsers().then(function(users) {
-        console.log(userController.getUsers());
-    }).catch(function(err) {
-        console.log(err)
-    });
 
+    var msg = userController.getUsers() ;
+
+    console.log(msg+"hey");
     /*
-    console.log(userController.getUsers());
-    res.end();
-    */
+users => {
+    res.status(200);
+    res.send(users);
+  }).catch(err =>{
+    throw err;
+  })    
+  */
 });
 
 

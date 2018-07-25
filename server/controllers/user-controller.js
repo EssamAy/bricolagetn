@@ -8,7 +8,8 @@ exports.getUsers = function (req, res) {
   // });
 
   userModel.findAll().then(users => {
-    console.log(users)
+//    res.status(200);
+    res.send(users);
   }).catch(err =>{
     throw err;
   })
