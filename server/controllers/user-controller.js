@@ -42,10 +42,10 @@ exports.getUserById = function (req, res) {
 };
 
 exports.deleteUser = function (req, res) {
-  userModel.destroy({where: {id: req.params.id}})
+  userModel.destroy({where: {id_user: req.params.id}})
     .then(function () {
       res.status(200);
-      res.send({});
+      res.send({msg : "user succeffully deleted"});
     })
     .catch(function () {
       res.status(400);
