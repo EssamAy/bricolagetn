@@ -1,4 +1,5 @@
 const db = require ('../database/connection.js');
+const phoneNumber = require ('./phonenumber-model.js');
 
 
 // USer model
@@ -44,8 +45,27 @@ const db = require ('../database/connection.js');
     }
   });
 
+  User.hasMany(phoneNumber/* ,
+  {
+    foreignKey: "user_id",
+    sourceKey: "user_id"
+  } */);
+
+    //Association with User model ==> user has many phone numbers
+    phoneNumber.belongsTo(User/*,
+      {
+        foreignKey: {
+          name : "user_id",
+        allowNull : false,
+        primaryKey: true,
+      },
+        targetKey: "user_id",
+        onDelete: "CASCADE",
+      }*/);
+
   //({force: true})
  db.sequelize.sync({
+  force: true,
     logging : console.log}
 )
 

@@ -52,3 +52,27 @@ exports.deleteUser = function (req, res) {
       res.send({reason: "Error"});
     });
 };
+
+
+exports.updateUser = function (req, res) {
+    var userData = {
+      name: req.body.name,
+      password: req.body.password,
+      mail: req.body.mail,
+      job: req.body.job,
+      domain: req.body.domain,
+      phone_number: req.body.phone_number,
+      description: req.body.description,
+      adress: req.body.adress,
+      image: req.body.image,
+      city: req.body.city
+    }
+  userModel.build(userData).save()
+  .then(function (user) {
+  res.status(200);
+  return res.send({msg: "user updated"});
+  }).catch(function () {
+  res.status(400);
+  return res.send({reason: "Error"});
+  });
+};
