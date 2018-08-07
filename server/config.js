@@ -3,7 +3,7 @@ const Config = {
         host: 'localhost',
         name: 'bricolage_test',
         user: 'root',
-        password: 'root'
+        password: ''
     }
 }
 module.exports = Config;
