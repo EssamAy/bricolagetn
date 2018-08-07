@@ -1,19 +1,15 @@
 const db = require ('../database/connection.js');
-const User = require ('./user-model.js');
 
 
 // phoneNumber model
-  const phoneNumber = db.sequelize.define('phoneNumber', {
-    phone_number: {
-      type: db.Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: false,
-    },
-    user_id: {
-      type: db.Sequelize.INTEGER,
-      primaryKey: true
-    }
-  });
+const phoneNumber = db.sequelize.define('phoneNumber', {
+  phone_number: {
+    type: db.Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: false,
+  }
+});
+
 
 
 
