@@ -1,7 +1,7 @@
 const router = require('express').Router();
 var userController = require("../controllers/user-controller");
 
-var userController = require("../controllers/contractor-controller");
+var contractorController = require("../controllers/contractor-controller");
 
 
 
